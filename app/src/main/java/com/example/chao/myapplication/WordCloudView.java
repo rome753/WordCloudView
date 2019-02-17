@@ -53,9 +53,12 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
 
             int pivotX = getWidth() / 3 + random.nextInt(getWidth() / 3);
             int pivotY = getHeight() / 3 + random.nextInt(getHeight() / 3);
-            int dir = 0; // 0-left, 1-top, 2-right, 3-bottom
-            int len = 2;
-            while(pivotX > 0 && pivotX < getWidth() && pivotY > 0 && pivotY < getHeight()) {
+
+            List<Point> sprial = generateSprial();
+            for(Point p : sprial) {
+                pivotX += p.x;
+                pivotY += p.y;
+
                 Log.d("chao", "place " + pivotX + "," + pivotY);
                 Rect r1 = getVisualRect(pivotX, pivotY, w, h, v.getRotation());
                 boolean isOverlap = false;
@@ -67,24 +70,7 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
                     }
                 }
                 if(isOverlap) {
-                    Log.d("chao", "isOverlap " + pivotX + "," + pivotY);
-                    switch (dir) {
-                        case 0:
-                            pivotX -= len;
-                            break;
-                        case 1:
-                            pivotY -= len;
-                            len += 2;
-                            break;
-                        case 2:
-                            pivotX += len;
-                            break;
-                        case 3:
-                            pivotY += len;
-                            len += 2;
-                            break;
-                    }
-                    dir = ++dir % 4;
+
                 } else {
                     Log.d("chao", "placed");
                     Rect r = getRect(pivotX, pivotY, w, h);
@@ -172,7 +158,7 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
     private List<Point> generateSprial() {
         List<Point> res = new ArrayList<>();
         int A = 10;
-        int w = 1;
+        int w = 5;
         double sita = Math.PI;
         for(double t = 0; t < 10 * Math.PI; t+=0.1) {
             int x = Double.valueOf(A * Math.cos(w * t + sita)).intValue();

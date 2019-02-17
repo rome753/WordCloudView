@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
                 wordCloudView.addTextView(s, weight);
                 if(--off == 0) {
                     off = 3;
-//                    if(weight > 5) weight--;
-                    weight--;
-                    if(weight == 5) return;
+                    if(weight > 5) weight--;
+//                    weight--;
+//                    if(weight == 5) return;
                 }
                 sendEmptyMessageDelayed(0, 100);
             }
