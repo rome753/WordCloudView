@@ -7,6 +7,7 @@
     tools:context="com.example.chao.myapplication.MainActivity">
 
     <com.example.chao.myapplication.WordCloudView
+        android:id="@+id/wcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -14,5 +15,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <!--<com.example.chao.myapplication.SprialView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 </android.support.constraint.ConstraintLayout>
