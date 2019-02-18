@@ -17,26 +17,26 @@ import java.util.List;
  * Created by chao on 2019/2/17.
  */
 
-public class SprialView extends View {
+public class SpiralView extends View {
 
     Paint paint;
     List<Point> points;
 
-    public SprialView(Context context) {
+    public SpiralView(Context context) {
         this(context, null);
     }
 
-    public SprialView(Context context, @Nullable AttributeSet attrs) {
+    public SpiralView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SprialView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SpiralView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
 
-        points = generateSprial();
+        points = generateSpiral();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SprialView extends View {
         }
     }
 
-    private List<Point> generateSprial() {
+    private List<Point> generateSpiral() {
         List<Point> res = new ArrayList<>();
         int A = 10;
         int w = 1;

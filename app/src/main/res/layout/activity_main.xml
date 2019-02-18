@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--<com.example.chao.myapplication.SprialView-->
+    <!--<com.example.chao.myapplication.SpiralView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->
 
