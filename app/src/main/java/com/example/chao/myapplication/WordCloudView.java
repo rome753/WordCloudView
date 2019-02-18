@@ -54,8 +54,8 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
             int pivotX = getWidth() / 3 + random.nextInt(getWidth() / 3);
             int pivotY = getHeight() / 3 + random.nextInt(getHeight() / 3);
 
-            List<Point> sprial = generateSprial();
-            for(Point p : sprial) {
+            List<Point> spiral = generateSpiral();
+            for(Point p : spiral) {
                 pivotX += p.x;
                 pivotY += p.y;
 
@@ -155,7 +155,7 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
         }
     }
 
-    private List<Point> generateSprial() {
+    private List<Point> generateSpiral() {
         List<Point> res = new ArrayList<>();
         int A = 10;
         int w = 5;
