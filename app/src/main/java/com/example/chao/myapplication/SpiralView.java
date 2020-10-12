@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class SpiralView extends View {
 
+    Path path;
     Paint paint;
     List<Point> points;
 
@@ -33,9 +35,13 @@ public class SpiralView extends View {
     public SpiralView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         paint = new Paint();
+        paint.setAntiAlias(true);
         paint.setColor(Color.RED);
-        paint.setStyle(Paint.Style.FILL);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(10);
+        paint.setStrokeCap(Paint.Cap.ROUND);
 
+        path = new Path();
         points = generateSpiral();
     }
 
@@ -43,9 +49,18 @@ public class SpiralView extends View {
     protected void onDraw(Canvas canvas) {
         int cx = getWidth() / 2;
         int cy = getHeight() / 2;
-        for(Point p : points) {
-            canvas.drawCircle(cx + p.x, cy + p.y, 5, paint);
+        path.reset();
+        for(int i = 0; i < points.size(); i++) {
+            Point p = points.get(i);
+            int x = cx + p.x;
+            int y = cy + p.y;
+            if (i == 0) {
+                path.moveTo(x, y);
+            } else {
+                path.lineTo(x, y);
+            }
         }
+        canvas.drawPath(path, paint);
     }
 
     private List<Point> generateSpiral() {
