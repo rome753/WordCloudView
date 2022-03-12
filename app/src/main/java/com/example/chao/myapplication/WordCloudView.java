@@ -4,14 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -132,10 +132,18 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
             0f,90f,270f
     };
 
+    //设置Cloud的颜色
+    private final int[] colors = new int[] {
+            Color.rgb(36,252,3),
+            Color.rgb(187,134,252),
+            Color.rgb(187,134,252),
+    };
+
     public void addTextView(String word, int weight) {
         TextView tv = new TextView(getContext());
         tv.setText(word);
         tv.setTextSize(weight);
+        tv.setTextColor(colors[weight/20]);
         tv.setRotation(rotates[random.nextInt(rotates.length)]);
         tv.setOnClickListener(this);
         addView(tv, params);
@@ -146,10 +154,11 @@ public class WordCloudView extends FrameLayout implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v instanceof TextView) {
-            Log.e("chao", "click " + ((TextView) v).getText());
+            Log.e("chao", "click " + ((TextView) v).getText() + " size:\t" + String.valueOf( ((TextView) v ).getTextSize()));
             ((TextView) v).setTextColor(Color.RED);
             if(lastText != null) {
                 lastText.setTextColor(Color.BLACK);
+//                lastText.setTextColor(colors[(int) (((TextView) v ).getTextSize() / 25)]);
             }
             lastText = (TextView) v;
         }
