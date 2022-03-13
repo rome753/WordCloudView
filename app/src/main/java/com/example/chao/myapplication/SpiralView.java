@@ -6,10 +6,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +37,7 @@ public class SpiralView extends View {
         paint = new Paint();
         paint.setAntiAlias(true);
         paint.setColor(Color.RED);
+        paint.setAlpha(10);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
         paint.setStrokeCap(Paint.Cap.ROUND);
